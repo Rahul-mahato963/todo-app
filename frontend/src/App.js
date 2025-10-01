@@ -5,7 +5,7 @@ function App() {
   const [tasks, setTasks] = useState([]);
   const [title, setTitle] = useState("");
 
-  // Fetch tasks
+
   useEffect(() => {
     fetchTasks();
   }, []);
@@ -15,7 +15,7 @@ function App() {
     setTasks(res.data);
   };
 
-  // Add task
+
   const handleAdd = async (e) => {
     e.preventDefault();
     if (!title) return;
@@ -24,13 +24,13 @@ function App() {
     setTitle("");
   };
 
-  // Toggle complete
+
   const handleToggle = async (id, completed) => {
     const res = await axios.put(`http://localhost:5000/api/tasks/${id}`, { completed });
     setTasks(tasks.map(t => t._id === id ? res.data : t));
   };
 
-  // Delete task
+
   const handleDelete = async (id) => {
     await axios.delete(`http://localhost:5000/api/tasks/${id}`);
     setTasks(tasks.filter(t => t._id !== id));
@@ -52,7 +52,7 @@ function App() {
         <button type="submit">Add</button>
       </form>
 
-      {/* Task List */}
+  
       <ul>
         {tasks.map((task) => (
           <li key={task._id} style={{ margin: "10px 0" }}>
@@ -69,7 +69,7 @@ function App() {
               onClick={() => handleDelete(task._id)}
               style={{ marginLeft: "10px" }}
             >
-              ❌
+           
             </button>
           </li>
         ))}
